@@ -1,0 +1,12 @@
+{
+    "name": "chris-heney/gf-roadie",
+    "description": "A currier/delivery solution for Gravity Forms Entries.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Chris Heney",
+            "email": "chris.heney@gmail.com"
+        }
+    ],
+    "require": {}
+}

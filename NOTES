@@ -1,0 +1,52 @@
+Left off / Next Steps:
+
+gf-roadie.js:
+ - Adding Quantity and pickup_after variables
+
+class-gf-roadie.php: 
+ - Add <input> number for quantity
+
+class-api-gf-roadie.php
+ - Replace endpoint & token with settings call
+ - Replace hard-coded values for estimate
+ - Create function for create-shipment; to be called by cron
+
+Will need to create a cronable script file as well, to bootstrap the
+calls to roadie to create-shipment.  Roadie's create-shipment should
+be able to be accessed from both the cron script as well as WP Hook.
+
+Thought process:
+Add to the entry meta data an araray of named addresses which will
+be looped through monthly on cron;
+
+Psudeo code:
+<?php
+
+$settings = get_settings();
+$form_id = rgar( $settings, 'roadie_order_form' );
+$orders = gf_get_entries([ 'form_id' => $form_id ]);
+
+foreach ($entries as $entry){
+    
+    $shipment_enabled = gform_get_meta( $entry['id'], 'shipment_enabled' );
+    
+    if ( ! $shipment_enabled ){
+        continue;
+    }
+
+    $addresses = gform_get_meta( $entry['id'], 'roadie_addresses' );
+
+    if ( ! $addresses ) {
+        continue;
+    }
+
+    foreach ($addresses as $address){
+        sleep(1);   // 1 second delay
+
+    }
+}
+
+
+
+TODO:
+Add Order Form ID to settings
